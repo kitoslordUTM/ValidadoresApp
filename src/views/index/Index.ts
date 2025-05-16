@@ -1,6 +1,11 @@
-import { View, Text } from "react-native";
+import { SafeAreaView, View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+
 
 export {
     View,
-    Text
+    Text,
+    TextInput,
+    TouchableOpacity,
+    StyleSheet,
+    SafeAreaView
 }

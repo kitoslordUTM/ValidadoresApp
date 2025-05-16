@@ -4,10 +4,13 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../views/home/Home';
 import Config from '../views/config/Config';
 import Login from '../views/login/Login';
-import TabBar from './TabBar'
+import TabBar from '../lib/components/TabBar'
+
+
+
 
 const Tab = createBottomTabNavigator();
-const isLoggedIn = true; // Simulate user authentication status
+const isLoggedIn = true; 
 
 export default function MainNavigator() {
   return (
