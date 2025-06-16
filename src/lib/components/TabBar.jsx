@@ -3,13 +3,13 @@ import { View, Text, TouchableOpacity, StyleSheet, Platform } from 'react-native
 import Ionicons from 'react-native-vector-icons/Ionicons';
  
 
-export default function TabBar({ state, descriptors, navigation }) {
+export function TabBar({ state, descriptors, navigation, onLogoutPress }) {
   const icons = {
-    home: (props) => < Ionicons name="home-outline"  size={24} {...props}    />,
-    config: (props) => <Ionicons name="settings-outline" size={24} {...props} />,
+    Inicio: (props) => <Ionicons name="home-outline" size={24} {...props} />,
+    Salir: (props) => <Ionicons name="log-out" size={24} {...props} />,
   };
 
-  const tabOrder = ["home", "config"];
+  const tabOrder = ['Inicio', 'Salir'];
 
   return (
     <View style={styles.tabbar}>
@@ -23,6 +23,12 @@ export default function TabBar({ state, descriptors, navigation }) {
         const isFocused = state.index === state.routes.findIndex((r) => r.name === routeName);
 
         const onPress = () => {
+          if (routeName === 'Salir') {
+            {/* esto significa que si no es undefined entonces ejecuta la funcion  */}
+            onLogoutPress?.();
+            return;
+          }
+
           const event = navigation.emit({
             type: 'tabPress',
             target: route.key,
@@ -44,11 +50,11 @@ export default function TabBar({ state, descriptors, navigation }) {
             activeOpacity={0.7}
           >
             {IconComponent ? (
-              <IconComponent color={isFocused ? '#007AFF' : '#8e8e93'} />
+              <IconComponent color={isFocused ? '#e46d29' : '#8fa691'} />
             ) : (
               <Text>❓</Text>
             )}
-            <Text style={[styles.label, { color: isFocused ? '#007AFF' : '#8e8e93' }]}>
+            <Text style={[styles.label, { color: isFocused ? '#e46d29' : '#8fa691' }]}>
               {label.charAt(0).toUpperCase() + label.slice(1)}
             </Text>
           </TouchableOpacity>
@@ -63,19 +69,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     backgroundColor: '#fff',
-    borderTopWidth: 1,
-    borderTopColor: '#e5e5e5',
+    position: 'absolute',
+    left:'10%',
+    bottom: 0,
     paddingVertical: 10,
-    paddingBottom: Platform.OS === 'ios' ? 20 : 10,
-    shadowColor: '#000',
     shadowOpacity: 0.1,
+    borderRadius: 30,
     shadowOffset: { width: 0, height: -3 },
-    shadowRadius: 5,
-    elevation: 10,
-    borderRadius: 20,
     width: '80%',
     alignSelf: 'center',
     marginBottom: 20,
+    borderColor: 'gray',
+    borderWidth:0.3
   },
   tabbarItem: {
     alignItems: 'center',

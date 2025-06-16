@@ -1,0 +1,121 @@
+type Images = {
+  id: number;
+  nombre: string;
+  tipo: number;
+  urlImg: string;
+  cambio: number;
+};
+
+export type Customer = {
+  nombres?: string;
+  app?: string;
+  apm?: string;
+  credito?: string;
+  id?: number;
+  usuario?: string;
+  fecha?: string;
+  grupo?: string;
+  estatus?: string;
+  pendientes?: number;
+  perfil?: string;
+  f_update?: string;
+
+  // campos crediticios chcar si pueden ser number
+  calif?: number;
+  tv?: boolean;
+  horno?: boolean;
+  refr?: boolean;
+  aire?: boolean;
+  esterio?: boolean;
+  lav?: false;
+  casa?: number;
+  depen?: number;
+  per_viv?: number;
+  //campos informacion personal
+  moto?: string;
+  nombre_conyuge?: string;
+  sexo?: string;
+  edocivil?: string;
+  fn?: string;
+  telefono?: string;
+  curp?: string;
+  numero_ine?: string;
+  nsocial?: string;
+  cp?: string;
+  estado?: string;
+  municipio?: string;
+  colonia?: string;
+  direccion?: string;
+  ssol?: number;
+  folioweb?: number;
+  producto?: number;
+  sucursal?: string;
+  tipo_cliente?: string;
+  cliemp?: number;
+  id_plan?: number;
+  id_moto?: number;
+  tipo_pago?: number;
+  tipo_moto2?: string;
+  precio?: number;
+  plazo?: string;
+  enganche?: number;
+  financiamiento?: string;
+  recidual?: number;
+  domiciliar?: string;
+  banco?: string;
+  clabe_banco?: number;
+  clabe_interbancaria?: string;
+  f1?: string;
+  f2?: string;
+  editar_uno?: number;
+  empresa_nombre?: string;
+  empresa_puesto?: string;
+  empresa_antiguedad?: number;
+  empresa_sueldo?: number;
+  empresa_telefono?: number;
+  empresa_dia_pago?: number;
+  empresa_periodicidad?: string;
+  empresa_actividad_neg?: string;
+  empresa_tiempo_neg?: string;
+  empresa_tipo_local?: string;
+  empresa_tipo_empleado?: string;
+  empresa_cp?: number;
+  empresa_estado?: string;
+  empresa_ciudad?: string;
+  empresa_colonia?: string;
+  empresa_direccion?: string;
+  empresa_otra_fuente?: string;
+  empresa_monto?: number;
+  estatusMod?: boolean;
+  estatusMod2?: boolean;
+  tipo?: string;
+
+  imagenes?: Images[];
+};
+
+export type User = {
+  id: number;
+  usuario: string;
+  sucursal_movil: string;
+  tipo: string;
+  id_emp: number;
+  sucursal: string;
+  nombre: string;
+  znivel: string;
+  producto: string;
+  estatus: string;
+  nivel: string;
+  zonap: string;
+  zonas: string;
+  zona: string;
+  mailgerente: string;
+  gerente: string;
+  ticket: string;
+  f_update: string;
+  ultima_sesion: string;
+  fecha_registro: string;
+
+  permisos: {
+    app_movilidad: number;
+  };
+};

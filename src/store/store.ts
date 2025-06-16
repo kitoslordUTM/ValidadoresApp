@@ -1,13 +1,26 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { authApi } from "../services/auth";
+import { clientApi } from "../services/clients";
+import { imageApi } from "../services/image";
+
+import LogSlice from '../slices/LoginSlice'
+import FilterSlice from '../slices/filterSlice';
 
 export const store = configureStore({
   reducer: {
     // Add your reducers here
+    LogIn: LogSlice,
+    Filter: FilterSlice,
+    // Add your API slices here
+    [authApi.reducerPath]: authApi.reducer,
+    [clientApi.reducerPath]: clientApi.reducer,
+    [imageApi.reducerPath]: imageApi.reducer
   },    
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({
-        serializableCheck: false,
-        }),
+        getDefaultMiddleware()
+        .concat(authApi.middleware)
+        .concat(clientApi.middleware)
+        .concat(imageApi.middleware),
 
 });
 

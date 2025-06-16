@@ -1,60 +1,111 @@
-import * as Index from '../index/Index'
-import { initialValues } from './Const';
-const { View, Text, TouchableOpacity, TextInput  } = Index
+import * as Index from '../../index/index';
+import {NameInput, PasswordInput, SubmitButton} from '../../lib/molecules';
+import {initialValues} from '../const/LoginConst';
+import {useDispatch} from 'react-redux';
+import {setIsActive} from '../../slices/LoginSlice';
+import Styles from './Style';
+import Toast from 'react-native-toast-message';
+import {useSignInMutation} from '../../services/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import LinearGradient from 'react-native-linear-gradient';
 
-
-const NameInput = () => (
-  <View>
-    <TextInput
-      placeholder="Ingrese su nombre"
-      style={{
-        borderWidth: 1,
-        borderColor: 'black',
-        padding: 10,
-        marginBottom: 10,
-      }}
-      value={initialValues.username}
-    />
-  </View>
-);
-
-const PassWordInput = () => (
-  <View>
-    <TextInput
-      placeholder="Ingrese su contraseña"
-      secureTextEntry={true}
-      style={{
-        borderWidth: 1,
-        borderColor: 'black',
-        padding: 10,
-        marginBottom: 10,
-      }}
-      value={initialValues.password}
-    />
-  </View>
-)
-
-const SubmitButton = () => (
-  <TouchableOpacity
-    style={{
-      backgroundColor: 'blue',
-      padding: 10,
-      borderRadius: 5,
-    }}
-    onPress={() => console.log('Button pressed')}
-  >
-    <Text style={{ color: 'white' }}>Iniciar sesión</Text>
-  </TouchableOpacity>
-);
-
+const {View, Text, useState, ActivityIndicator, Image, hp} = Index;
 
 export default function Login() {
+  // statements
+  const [signUp, {isLoading}] = useSignInMutation();
+  const [credentials, setCredentials] = useState(initialValues);
+  const dispatch = useDispatch();
+
+  // functions
+  const handleSubmit = async () => {
+    try {
+      const response = await signUp(credentials).unwrap();
+      await AsyncStorage.setItem('TOKEN', response.token || 'token');
+      //despues cambiar a nokmbre porque ahi ponen el usuario
+      await AsyncStorage.setItem(
+        'USER',
+        JSON.stringify(response.datos.usuario || {}),
+      );
+      await AsyncStorage.setItem(
+        'SUCURSAL',
+        JSON.stringify(response.datos.sucursal_movil || {}),
+      );
+      await AsyncStorage.setItem(
+        'PERMISO',
+        JSON.stringify(response.datos.permisos.app_movilidad || {}),
+      );
+
+      // Guardar el token en AsyncStorage
+      dispatch(setIsActive(true));
+
+      Toast.show({
+        type: 'success',
+        text1: 'Bienvenido',
+        text2: 'Te haz logueado correctamente 👋',
+      });
+    } catch (err) {
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: 'Credenciales incorrectas👋',
+      });
+    }
+  };
+
   return (
-    <View>
-      <Text style={{ fontSize: 24, marginBottom: 20 }}>Iniciar sesión</Text>
-      <NameInput />
-      <PassWordInput />
-      <SubmitButton />
-    </View>   
-  )
+    <LinearGradient
+      colors={['#f9665a', '#ee4a12']}
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+      }}>
+    <View style={Styles.logo}>
+      <Image
+        source={require('../../assets/lafin_logo.png')}
+        style={{ width: 150, height: 150, resizeMode: 'contain' }}
+      />
+    </View>
+
+      <View style={Styles.container}>
+        <Text
+          style={{
+            fontSize: 30,
+            marginBottom: 20,
+            fontWeight: 600,
+            alignSelf: 'center',
+            marginTop: 20,
+          }}>
+          Iniciar sesión
+        </Text>
+
+        <NameInput
+          value={credentials.name}
+          onChangeText={(text: string) =>
+            setCredentials({...credentials, name: text})
+          }
+          placeholder="Ingrese su usuario"
+        />
+        <PasswordInput
+          value={credentials.pwd}
+          onChangeText={(text: string) =>
+            setCredentials({...credentials, pwd: text})
+          }
+        />
+
+        <View>
+          {isLoading ? (
+            <ActivityIndicator size="large" color="black" />
+          ) : (
+            <SubmitButton onPress={handleSubmit} title="Iniciar sesión" />
+          )}
+        </View>
+        
+      </View>
+    </LinearGradient>
+  );
 }
