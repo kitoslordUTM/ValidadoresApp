@@ -67,7 +67,7 @@ export default function Login() {
     <View style={Styles.logo}>
       <Image
         source={require('../../assets/lafin_logo.png')}
-        style={{ width: 150, height: 150, resizeMode: 'contain' }}
+       
       />
     </View>
 

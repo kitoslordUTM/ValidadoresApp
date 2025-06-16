@@ -17,7 +17,7 @@ export const useSurvey = () => {
               text2: 'se ha registrado correctamente',
             });
 
-            console.log ( params)
+            
 
       return response
 
@@ -28,6 +28,9 @@ export const useSurvey = () => {
               text1: 'Error',
               text2: 'Error al registrar encuesta',
             });
+      
+      console.log(err)
+      console.log ( params)
 
       throw err;
     }
