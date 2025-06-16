@@ -66,10 +66,38 @@ export const useImageUpload = ({customer, refetch}: useImageProps) => {
     }
   };
 
-  const imageDelete = async (id: number, id_imagen: number) => {
-    try {
 
-      const res = await deleteImage({id, id_imagen})
+  const modalDelete = (id: number, id_imagen: number)=>{
+
+
+    Alert.alert(
+      '¿Deseas borrar esta imagen?',
+      '',
+      [
+        {text: 'Cancelar', style: 'cancel'},
+        {
+          text: 'Borrar',
+          onPress: () => {
+             imageDelete(id, id_imagen)
+          },
+        },
+      ],
+      {cancelable: true},
+    );
+
+  }
+
+
+
+
+
+
+  const imageDelete = async (id: number, id_imagen: number) => {
+    try { 
+      
+
+      await deleteImage({id, id_imagen})
+      
 
       Toast.show({
         type: 'success',
@@ -91,5 +119,5 @@ export const useImageUpload = ({customer, refetch}: useImageProps) => {
 
 
 
-  return {selectedImages, addImage, imageDelete};
+  return {selectedImages, addImage, imageDelete, modalDelete};
 };
