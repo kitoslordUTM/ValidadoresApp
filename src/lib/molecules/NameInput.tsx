@@ -53,11 +53,12 @@ export const NameInput: React.FC<NameInputProps> = ({
         value={String(value)}
         onChangeText={handleChange}
         placeholder={placeholder}
+        placeholderTextColor={'black'}
         keyboardType={Type || 'default'}
         maxLength={max || 20}
       />
       {Icon && (
-        <View style={{ position: 'absolute', right: 9, top: 12 }}>
+        <View style={{ position: 'absolute', right: wp(3), top: hp(1.6) }}>
           {Icon}
         </View>
       )}

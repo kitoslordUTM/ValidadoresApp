@@ -29,6 +29,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
       <TextInput
         style={styles.input}
         value={value}
+        placeholderTextColor={'black'}
         onChangeText={onChangeText}
         placeholder={placeholder}
         secureTextEntry={visible === true}
@@ -65,6 +66,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 30,
     fontSize: 16,
+    color: 'black'
   },
 });
 

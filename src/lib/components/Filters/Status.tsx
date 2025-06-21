@@ -54,7 +54,7 @@ export  function Status() {
           <ScrollView style={{ maxHeight: '50%' }}  showsVerticalScrollIndicator={false}>
             {statusList.map((status, index) => (
               <TouchableOpacity onPress={()=> {handleConfirm( status.value) ; setLabel(status.label)    }} key={index} style={{ padding: 10, borderBottomWidth: 1, borderColor: '#ccc' }}  >
-                <Text style={{alignSelf: 'center', fontWeight:500 }}>{status.label}</Text>
+                <Text style={{alignSelf: 'center', fontWeight:500, color:'black' }}>{status.label}</Text>
               </TouchableOpacity>
             ))}
 

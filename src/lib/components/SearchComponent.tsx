@@ -23,7 +23,7 @@ export  function SearchComponent({ onSearch }: SearchComponentProps) {
         value={searchText}
         onChangeText={handleTextChange}
         Icon={<Ionicons name="search" size={24} color="black" />}
-        placeholder='Buscar por nombre o apellido'
+        placeholder='Buscar por nombre '
       />
     </View>
   );

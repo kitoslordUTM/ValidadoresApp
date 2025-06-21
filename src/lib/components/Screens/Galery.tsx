@@ -21,6 +21,7 @@ import {
 } from '../../../services/image';
 
 import ImageViewer from 'react-native-image-zoom-viewer';
+import { hp } from '../../../index';
 
 const {width} = Dimensions.get('window');
 const SMALL_WIDTH = width * 0.37;
@@ -151,6 +152,7 @@ const styles = StyleSheet.create({
     padding: 20,
     width: '100%',
     alignItems: 'center',
+    paddingBottom: 300
   },
   center: {
     marginTop: 50,
@@ -191,7 +193,9 @@ const styles = StyleSheet.create({
   label: {
     flex: 1,
     fontSize: 14,
+    color:'black'
   },
+
   actions: {
     flexDirection: 'row',
   },

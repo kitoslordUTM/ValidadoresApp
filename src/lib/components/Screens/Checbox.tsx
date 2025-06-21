@@ -27,6 +27,7 @@ export default function Checbox({
         <Ionicons
           name= 'checkbox-outline'
           size={24}
+          color={'black'}
         />
       </TouchableOpacity>
       ):(
@@ -34,6 +35,7 @@ export default function Checbox({
           <Ionicons
             name= 'square-outline'
             size={24}
+            color={'black'}
           />
         </TouchableOpacity>
       )

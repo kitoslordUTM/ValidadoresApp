@@ -27,18 +27,10 @@ export default function Login() {
     
 
       //despues cambiar a nokmbre porque ahi ponen el usuario
-      await AsyncStorage.setItem(
-        'USER',
-        JSON.stringify(response.datos.usuario || {}),
-      );
-      await AsyncStorage.setItem(
-        'SUCURSAL',
-        JSON.stringify(response.datos.sucursal_movil || {}),
-      );
-      await AsyncStorage.setItem(
-        'PERMISO',
-        JSON.stringify(response.datos.permisos.app_movilidad || {}),
-      );
+     await AsyncStorage.setItem('USER', response.datos.usuario || '');
+      await AsyncStorage.setItem('SUCURSAL', response.datos.sucursal_movil || '');
+      await AsyncStorage.setItem('PERMISO', String(response.datos.permisos.app_movilidad || '0'));
+
 
       // Guardar el token en AsyncStorage
       dispatch(setIsActive(true));

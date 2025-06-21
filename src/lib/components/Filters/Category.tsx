@@ -50,7 +50,7 @@ export  function Category() {
               >
                 {categoryList.map((status, index) => (
                   <TouchableOpacity onPress={()=> {handleConfirm( status.value) ; setLabel(status.label)    }} key={index} style={{ padding: 10, borderBottomWidth: 1, borderColor: '#ccc' }}  >
-                    <Text style={{alignSelf: 'center'}}>{status.label}</Text>
+                    <Text style={{alignSelf: 'center', color:'black' }}>{status.label}</Text>
                   </TouchableOpacity>
                 ))}
     

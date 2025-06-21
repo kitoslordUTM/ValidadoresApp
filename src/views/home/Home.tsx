@@ -40,6 +40,7 @@ export default function Home() {
             <Ionicons
               name={showFilters ? 'funnel-outline' : 'funnel'}
               size={24}
+              color={'black'}
             />
           </TouchableOpacity>
         </View>

@@ -11,9 +11,10 @@ export const useSolicitud = () => {
     const handleSolicitud = useCallback(async (params: Omit<SolicitudRequest, 'usuario' | 'sucursal' | 'permiso'>) => {
         try {
             // Obtener valores de AsyncStorage dentro de la función
-            const usuario = await AsyncStorage.getItem('USER') || '';
-            const sucursal = await AsyncStorage.getItem('SUCURSAL') || '';
-            const permiso = await AsyncStorage.getItem('PERMISO') || '0';
+            const usuario = (await AsyncStorage.getItem('USER'))?.replace(/"/g, '') || '';
+            const sucursal = (await AsyncStorage.getItem('SUCURSAL'))?.replace(/"/g, '') || '';
+            const permiso = parseInt(await AsyncStorage.getItem('PERMISO') || '0');
+
 
             console.log('Usuario:', usuario);
             console.log('Sucursal:', sucursal);
@@ -23,18 +24,19 @@ export const useSolicitud = () => {
                 ...params,
                 usuario,
                 sucursal,
-                permiso: parseInt(permiso) 
+                permiso: permiso
             };
             
             console.log(data)
 
             return await solicitud(data).unwrap();
+
         } catch (err) {
 
            Toast.show({
                    type: 'error',
                    text1: 'Error',
-                   text2: 'Credenciales incorrectas👋',
+                   text2: 'Error cargando solicitudes',
                  });
         }
     }, []);

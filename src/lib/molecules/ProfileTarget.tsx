@@ -67,7 +67,7 @@ export default function ProfileTarget({Customer}: ProfileTargetProps) {
       {/* Monto y botón */}
       <View style={styles.footer}>
         <View>
-          <Text style={Principal.subtitle}>
+          <Text style={styles.amount }>
             ${Customer.credito?.toLocaleString()}
           </Text>
         </View>
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   amount: {
-    fontSize: wp('4.5%'),
+    fontSize: wp(3.5),
     fontWeight: '600',
     color: '#000',
   },
@@ -128,8 +128,8 @@ const styles = StyleSheet.create({
     color: '#999',
   },
   circleButton: {
-  width: wp('12%'),
-  height: wp('12%'),
+  width: wp('11%'),
+  height: wp('11%'),
   borderRadius: wp('7%'), // hace que sea perfectamente circular
   backgroundColor: '#e46d29', // color de fondo claro
   justifyContent: 'center',

@@ -70,7 +70,7 @@ export function Interview({customer}: interviewProps) {
           onValueChange={itemValue => setSelectedHouse(itemValue)}
           style={styles.picker}>
           {casa.map((item, index) => (
-            <Picker.Item key={index} label={item.label} value={item.value} />
+            <Picker.Item key={index} label={item.label} value={item.value}  style={{color:'black'}} />
           ))}
         </Picker>
       </View>
@@ -82,7 +82,7 @@ export function Interview({customer}: interviewProps) {
           onValueChange={itemValue => setSelectedDependts(itemValue)}
           style={styles.picker}>
           {dependientes.map((item, index) => (
-            <Picker.Item key={index} label={item.label} value={item.value} />
+            <Picker.Item key={index} label={item.label} value={item.value} style={{color:'black'}} />
           ))}
         </Picker>
       </View>
@@ -101,7 +101,7 @@ export function Interview({customer}: interviewProps) {
           onValueChange={itemValue => setSelectedDomicilary(itemValue)}
           style={styles.picker}>
           {domicilio.map((item, index) => (
-            <Picker.Item key={index} label={item.label} value={item.value} />
+            <Picker.Item key={index} label={item.label} value={item.value}  style={{color:'black'}} />
           ))}
         </Picker>
       </View>

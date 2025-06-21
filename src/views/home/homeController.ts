@@ -15,6 +15,11 @@ export function useHomeController() {
   const [filtro, setFiltro] = useState('');
   const [list, setList] = useState<Customer[]>([]);
 
+  const formatDate = (date: string) => {
+  const [day, month, year] = date.split('/');
+  return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+};
+
   const { handleSolicitud } = useSolicitud();
 
   useEffect(() => {
@@ -22,23 +27,29 @@ export function useHomeController() {
   }, [status, initialDate, endDate, category]);
 
  const loadSolicitudes = async () => {
-    try {
-      const response = await handleSolicitud({
-        estatus: status,
-        fecha1: initialDate,
-        fecha2: endDate,
-        moto: 'Todos',
-        tipo: category,
-      });
-      
+  try {
+    const response = await handleSolicitud({
+      estatus: status,
+      fecha1: formatDate(initialDate),
+      fecha2: formatDate(endDate),
+      moto: 'Todos',
+      tipo: category,
+    });
 
-      const items = response!.data.items || [];
-      setList(items); // guardamos todos los datos en estado base
-      setFilteredDataSource(items); // también los mostramos por defecto
-    } catch (error) {
-      console.error('Error al cargar solicitudes:', error);
+    if (response && response.data?.items) {
+      const items = response.data.items;
+      setList(items);
+      setFilteredDataSource(items);
+    } else {
+      console.warn('Respuesta vacía o sin items:', response);
+      setList([]);
+      setFilteredDataSource([]);
     }
-  };
+  } catch (error) {
+    console.error('Error al cargar solicitudes:', error);
+  }
+};
+
 
   const searchFilterFunction = (text: string) => {
     if (text) {
