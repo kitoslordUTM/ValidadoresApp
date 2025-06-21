@@ -34,7 +34,7 @@ export const Galery = ({customer}: {customer: Customer}) => {
     isLoading: charging,
     refetch,
   } = useImageCreditByUserIdQuery(customer.id!);
-  const {addImage, imageDelete, modalDelete} = useImageUpload({customer, refetch});
+  const {addImage, modalDelete} = useImageUpload({customer, refetch});
   const {saveLocation} = useLocationUpload();
   const [preview, setPreview] = useState<string | null>(null);
 
@@ -50,8 +50,8 @@ export const Galery = ({customer}: {customer: Customer}) => {
   const imageLinks = types!.map(item => {
     const matched = credits.find(c => c.id_imagen === item.id);
     const uri = matched
-      ? `http://192.168.2.150:3000${matched.urlImg}`
-      : 'http://192.168.2.150:3000/UMmexico/unnamed.png';
+  ? `https://mzfinan.dyndns.org${matched.urlImg}`
+  : 'https://mzfinan.dyndns.org/UMmexico/unamed.jpg';
 
     return {url: uri};
   });
@@ -70,8 +70,8 @@ export const Galery = ({customer}: {customer: Customer}) => {
         {types!.map((item, idx) => {
           const matched = credits.find(c => c.id_imagen === item.id);
           const uri = matched
-            ? `http://192.168.2.150:3000${matched.urlImg}`
-            : 'http://192.168.2.150:3000/UMmexico/unnamed.png';
+            ? `https://mzfinan.dyndns.org${matched.urlImg}`
+            : 'https://mzfinan.dyndns.org/UMmexico/unamed.jpg';
 
           const isEvenRow = Math.floor(idx / 2) % 2 === 0;
           const isLeft = idx % 2 === 0;

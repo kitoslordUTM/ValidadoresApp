@@ -119,3 +119,13 @@ dependencies {
 }
 
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+
+
+afterEvaluate {
+    def copyFontsTask = tasks.findByName("copyReactNativeVectorIconFonts")
+    def lintModelTask = tasks.findByName("generateDebugLintReportModel")
+
+    if (copyFontsTask && lintModelTask) {
+        lintModelTask.dependsOn(copyFontsTask)
+    }
+}

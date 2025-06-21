@@ -1,3 +1,4 @@
+import Toast from "react-native-toast-message";
 import { useSolicitudMutation } from "../services/clients";
 import { SolicitudRequest } from "../services/utils";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -24,10 +25,17 @@ export const useSolicitud = () => {
                 sucursal,
                 permiso: parseInt(permiso) 
             };
+            
+            console.log(data)
 
             return await solicitud(data).unwrap();
         } catch (err) {
-            throw err;
+
+           Toast.show({
+                   type: 'error',
+                   text1: 'Error',
+                   text2: 'Credenciales incorrectas👋',
+                 });
         }
     }, []);
 

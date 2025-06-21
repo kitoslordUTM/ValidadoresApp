@@ -1,6 +1,6 @@
- import { Customer } from "../models/User";
+import { Customer } from "../models/User";
 
-export const Base   =  'http://192.168.2.150:3000'  
+export const Base   = 'https://mzfinan.dyndns.org:448'  
 export const TIMEOUT = 80000;
 
 export type SolicitudRequest = {

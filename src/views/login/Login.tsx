@@ -9,7 +9,7 @@ import {useSignInMutation} from '../../services/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LinearGradient from 'react-native-linear-gradient';
 
-const {View, Text, useState, ActivityIndicator, Image, hp} = Index;
+const {View, Text, useState, ActivityIndicator, Image } = Index;
 
 export default function Login() {
   // statements
@@ -21,7 +21,11 @@ export default function Login() {
   const handleSubmit = async () => {
     try {
       const response = await signUp(credentials).unwrap();
+  
+
       await AsyncStorage.setItem('TOKEN', response.token || 'token');
+    
+
       //despues cambiar a nokmbre porque ahi ponen el usuario
       await AsyncStorage.setItem(
         'USER',
@@ -67,7 +71,6 @@ export default function Login() {
     <View style={Styles.logo}>
       <Image
         source={require('../../assets/lafin_logo.png')}
-       
       />
     </View>
 

@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { Customer } from '../../models/User';
 
+
 export function useHomeController() {
   const initialDate = useSelector((state: RootState) => state.Filter.startDate);
   const endDate = useSelector((state: RootState) => state.Filter.endDate);
@@ -29,7 +30,9 @@ export function useHomeController() {
         moto: 'Todos',
         tipo: category,
       });
-      const items = response.data.items || [];
+      
+
+      const items = response!.data.items || [];
       setList(items); // guardamos todos los datos en estado base
       setFilteredDataSource(items); // también los mostramos por defecto
     } catch (error) {

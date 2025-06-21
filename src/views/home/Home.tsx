@@ -1,4 +1,3 @@
-// views/home/Home.tsx
 import * as Index from '../../index/index';
 import ProfileTarget from '../../lib/molecules/ProfileTarget';
 import {SearchComponent, FilterBar} from '../../lib/components';
@@ -13,57 +12,61 @@ import Style from './Style';
 import {Principal} from '../../style/principal';
 import {useHomeController} from './homeController';
 
-const {View, Text, ScrollView, Ionicons, TouchableOpacity, wp} = Index;
+const {View, Text, ScrollView, Ionicons, TouchableOpacity, wp, hp} = Index;
 
 export default function Home() {
   const {filteredDataSource, searchFilterFunction} = useHomeController();
   const [showFilters, setShowFilters] = Index.useState(false);
 
   return (
-    <View >
-      <View style={Style.header}>
-        <Text style={Principal.tittle}>Solicitud de crédito</Text>
-      </View>
+    <View style={{flex: 1}}>
+      {/* ENCABEZADO FIJO */}
+      <View style={{paddingTop: hp(2), paddingBottom: hp(2), backgroundColor: '#fff'}}>
+        <View style={Style.header}>
+          <Text style={Principal.tittle}>Solicitud de crédito</Text>
+        </View>
 
-      <View style={{flexDirection:'row', gap:15, alignItems:'center', alignContent:'center',  marginLeft:wp(5)}}>
-        <SearchComponent onSearch={searchFilterFunction} />
-        {showFilters !== true ? (
-          <TouchableOpacity onPress={() => setShowFilters(true)}>
-        
-            <Ionicons name="funnel" size={24}/>
+        <View
+          style={{
+            flexDirection: 'row',
+            gap: 15,
+            alignItems: 'center',
+            alignContent: 'center',
+            marginLeft: wp(5),
+          }}
+        >
+          <SearchComponent onSearch={searchFilterFunction} />
+          <TouchableOpacity onPress={() => setShowFilters(!showFilters)}>
+            <Ionicons
+              name={showFilters ? 'funnel-outline' : 'funnel'}
+              size={24}
+            />
           </TouchableOpacity>
-        ) : (
-          <TouchableOpacity onPress={() => setShowFilters(false)}>
-            
-            <Ionicons size={24} name="funnel-outline" />
-          </TouchableOpacity>
+        </View>
+
+        {showFilters && (
+          <FilterBar
+            filter={[<All />, <StartDate />, <EndDate />, <Status />, <Category />]}
+          />
         )}
       </View>
-      {showFilters === true ? (
-        <FilterBar
-          filter={[
-            <All />,
-            <StartDate />,
-            <EndDate />,
-            <Status />,
-            <Category />,
-          ]}
-        />
-      ) : null}
 
-      <View
-        style={{
-          display: 'flex',
+      {/* SCROLL SOLO PARA TARJETAS */}
+      <ScrollView
+        contentContainerStyle={{
           flexDirection: 'row',
           flexWrap: 'wrap',
-          alignContent: 'center',
           justifyContent: 'center',
           gap: 10,
-        }}>
+          paddingBottom: hp(20),
+          paddingTop: hp(2),
+        }}
+        showsVerticalScrollIndicator={false}
+      >
         {filteredDataSource.map((customer, index) => (
           <ProfileTarget key={index} Customer={customer} />
         ))}
-      </View>
+      </ScrollView>
     </View>
   );
 }

@@ -10,12 +10,56 @@ import {setIsActive} from '../slices/LoginSlice';
 import Home from '../views/home/Home';
 import Login from '../views/login/Login';
 import Scheme from '../views/scheme/Scheme';
+import { useAuth } from '../hooks/useAuth';
+import { useEffect } from 'react';
+import { ActivityIndicator } from 'react-native';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function MainNavigator() {
   const isLoggedIn = useSelector(state => state.LogIn.isActive);
+  const { loadToken } = useAuth();
+  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+  let logoutTimer;
+
+  async function checkToken() {
+    const { valid, expiresIn } = await loadToken();
+
+    if (valid && expiresIn) {
+      logoutTimer = setTimeout(async () => {
+        await AsyncStorage.removeItem('TOKEN');
+        dispatch(setToken(null));
+        dispatch(setIsActive(false));
+      }, expiresIn * 1000);
+
+      dispatch(setIsActive(true));
+    } else {
+      dispatch(setIsActive(false));
+    }
+
+    setLoading(false);
+  }
+
+  checkToken();
+
+  return () => {
+    if (logoutTimer) clearTimeout(logoutTimer);
+  };
+}, []);
+
+
+  if (loading) {
+    return (
+      <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
+
   return isLoggedIn ? <AppTabs /> : <AuthStack />;
 }
 

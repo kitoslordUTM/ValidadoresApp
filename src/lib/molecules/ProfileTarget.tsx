@@ -44,10 +44,15 @@ export default function ProfileTarget({Customer}: ProfileTargetProps) {
           style={styles.avatar}
         />
 
-        <View style={{display: 'flex', flexDirection: 'column', marginLeft: wp('2%')}}>
-            <Text style={styles.name}>{Customer.nombres}</Text>
-            <Text style={styles.name}>{Customer.app}</Text>
+       <View style={{display: 'flex', flexDirection: 'column', marginLeft: wp('2%'), flex: 1}}>
+          <Text style={styles.name} numberOfLines={1} ellipsizeMode="tail">
+            {Customer.nombres}
+          </Text>
+          <Text style={styles.name} numberOfLines={1} ellipsizeMode="tail">
+            {Customer.app}
+          </Text>
         </View>
+
         
       </View>
 
@@ -88,8 +93,8 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   avatar: {
-    width: wp('18%'),
-    height: wp('18%'),
+    width: wp('13%'),
+    height: wp('13%'),
     borderRadius: wp('8%'),
     alignSelf: 'center',
     marginBottom: hp('1%'),
