@@ -20,7 +20,7 @@ export function useHomeController() {
   return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
 };
 
-  const { handleSolicitud } = useSolicitud();
+  const { handleSolicitud , isLoading} = useSolicitud();
 
   useEffect(() => {
     loadSolicitudes();
@@ -76,5 +76,6 @@ export function useHomeController() {
   return {
     filteredDataSource,
     searchFilterFunction,
+    isLoading
   };
 }

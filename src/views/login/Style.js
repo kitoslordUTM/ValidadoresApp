@@ -3,11 +3,11 @@ const { StyleSheet, hp , wp } = Index
 
 const Styles = StyleSheet.create({
    logo: {
-    height: hp(45),
+    height: hp(52),
     width: wp(100),
     backgroundColor: '#FF4500',     
-    borderBottomLeftRadius: 100, 
-    borderBottomRightRadius: 100,
+    borderBottomLeftRadius: 190, 
+    borderBottomRightRadius: 190,
     top:3 , 
     position:'absolute',
     alignContent:'center',
@@ -15,13 +15,13 @@ const Styles = StyleSheet.create({
     },
     container  : {
         width: wp(90),
-        height: hp(60),
+        height: hp(42),
         alignSelf: 'center',
         position: 'absolute',
         backgroundColor: '#fff',
-        top: hp(30),
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
+        top: hp(40),
+        borderTopLeftRadius: 45,
+        borderTopRightRadius: 45,
         borderBottomEndRadius: 30
         },
     inputContainer: {

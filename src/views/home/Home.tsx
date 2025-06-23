@@ -12,10 +12,10 @@ import Style from './Style';
 import {Principal} from '../../style/principal';
 import {useHomeController} from './homeController';
 
-const {View, Text, ScrollView, Ionicons, TouchableOpacity, wp, hp} = Index;
+const {View, Text, ScrollView, Ionicons, TouchableOpacity, wp, hp, ActivityIndicator} = Index;
 
 export default function Home() {
-  const {filteredDataSource, searchFilterFunction} = useHomeController();
+  const {filteredDataSource, searchFilterFunction, isLoading} = useHomeController();
   const [showFilters, setShowFilters] = Index.useState(false);
 
   return (
@@ -64,9 +64,21 @@ export default function Home() {
         }}
         showsVerticalScrollIndicator={false}
       >
-        {filteredDataSource.map((customer, index) => (
+
+
+       { isLoading? (
+       
+       <View  style={{alignContent: 'center' ,  alignItems:'center',  flex: 1 , justifyContent:'center'
+       }}  > 
+        <ActivityIndicator  size={'large'} color={'orange'} />
+      </View>
+      
+      ) : (filteredDataSource.map((customer, index) => (
           <ProfileTarget key={index} Customer={customer} />
-        ))}
+        ))
+  )}
+
+
       </ScrollView>
     </View>
   );

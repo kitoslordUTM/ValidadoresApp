@@ -63,6 +63,7 @@ export default function Login() {
     <View style={Styles.logo}>
       <Image
         source={require('../../assets/lafin_logo.png')}
+        style={{ marginTop:50 }}
       />
     </View>
 
@@ -74,8 +75,9 @@ export default function Login() {
             fontWeight: 600,
             alignSelf: 'center',
             marginTop: 20,
+            color:'black'
           }}>
-          Iniciar sesión
+          Bienvenido
         </Text>
 
         <NameInput
