@@ -50,13 +50,14 @@ export function StartDate() {
     <TouchableOpacity onPress={() => setModalVisible(true)} 
     style={{
 
-    marginLeft: wp('2%'),
+   marginLeft: wp('2%'),
     paddingHorizontal: hp('6%'),
     paddingVertical: wp('5%') ,
-    borderRadius: 30,
     marginRight: 10,
     borderWidth: 1,
     borderColor: '#ccc',
+    width:'100%',
+     
     backgroundColor: isSelected === true ? '#e46d29' : 'white',
     
     }}>

@@ -1,10 +1,7 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import {Base as BASE, TIMEOUT} from './utils';
 
-
-
 type Solicitud = {
-
   succes: string,
   data: [
     {
@@ -21,8 +18,6 @@ type Solicitud = {
     }
   ]
 }
-
-
 
 export const imageApi = createApi({
   reducerPath: 'api',

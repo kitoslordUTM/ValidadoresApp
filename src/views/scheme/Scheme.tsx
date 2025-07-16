@@ -9,7 +9,10 @@ import {
   Credit,
   Information,
   Interview,
+  
 } from '../../lib/components/Screens/index';
+
+import SecondInterview from '../../lib/components/Screens/SecondInterview';
 
 export default function Scheme({route}: SchemeProps) {
   const customer = route?.params?.Customer;
@@ -33,6 +36,8 @@ export default function Scheme({route}: SchemeProps) {
         return <Credit customer={FullData} />;
       case 'interview':
         return <Interview customer={customer} />;
+       case 'interview2':
+  return <SecondInterview customer={customer} />;
       default:
         return null;
     }

@@ -5,14 +5,12 @@ export function FilterBar({ filter }: { filter: React.ReactNode[] }) {
  
   return (
     <ScrollView
-     
-      horizontal
-      showsHorizontalScrollIndicator={false}
+    style={{  backgroundColor:'white',  width:'100%' }}
       contentContainerStyle={styles.content}
       
     >
       {filter.map((child, index) => (
-        <View key={index} style={styles.item}>
+        <View key={index}  >
           {child}
         </View>
       ))}
@@ -23,11 +21,10 @@ export function FilterBar({ filter }: { filter: React.ReactNode[] }) {
 const styles = StyleSheet.create({
  
   content: {
-    flexDirection: 'row',
-    
+    flexDirection: 'column',
+    width:'100%',
+   
+    gap:5
   },
-  item: { 
-    paddingVertical: 10,
-    borderRadius: 10,
-  },
+
 });

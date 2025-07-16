@@ -15,6 +15,7 @@ interface NameInputProps {
   isSearch?: boolean
 }
 
+
 export const NameInput: React.FC<NameInputProps> = ({
   value,
   onChangeText,

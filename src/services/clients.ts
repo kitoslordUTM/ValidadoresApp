@@ -6,6 +6,7 @@ import {
   SolicitudRequest,
   SurveyRequest,
   SurveyResponse,
+  SurveyRequest2
 } from './utils';
 import {Base as BASE, TIMEOUT} from './utils';
 
@@ -16,7 +17,7 @@ export const clientApi = createApi({
     baseUrl: BASE,
     timeout: TIMEOUT,
 
-    // ⬇️ Aquí recuperamos el token de AsyncStorage antes de cada request
+ 
     prepareHeaders: async (headers) => {
       const token = await AsyncStorage.getItem('TOKEN');
       if (token) {
@@ -46,6 +47,15 @@ export const clientApi = createApi({
         body: survey,
       }),
     }),
+
+    survey2: builder.mutation<SurveyResponse, SurveyRequest2>({
+      query: survey => ({
+        url: '/request/Second',
+        method: 'POST',
+        body: survey,
+      }),
+    }),
+
   }),
 });
 
@@ -53,4 +63,5 @@ export const {
   useSolicitudMutation,
   useCreditByUserIdQuery,
   useSurveyMutation,
+  useSurvey2Mutation
 } = clientApi;

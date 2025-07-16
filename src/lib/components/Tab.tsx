@@ -2,7 +2,7 @@ import React from 'react';
 import {View, ScrollView, TouchableOpacity, Text} from 'react-native';
 import styles from '../../views/scheme/Style';
 import { Customer } from '../../models/User';
-
+ 
 type Props = {
   activeTab: string;
   onTabChange: (tab: string) => void;
@@ -14,6 +14,7 @@ const tabs = [
   {label: 'Galería', key: 'galery'},
   {label: 'Crédito', key: 'credit'},
   {label: 'Entrevista', key: 'interview'},
+  {label: 'Encuesta', key: 'interview2'},
 ];
 
 export function Tab({activeTab, onTabChange, customer}: Props) {
@@ -37,5 +38,5 @@ export function Tab({activeTab, onTabChange, customer}: Props) {
         </TouchableOpacity>
       ))}
     </ScrollView>
-  );
+  );
 }

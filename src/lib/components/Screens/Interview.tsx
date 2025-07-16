@@ -45,6 +45,7 @@ export function Interview({customer}: interviewProps) {
     setIsVisible(false); // cerrar modal tras publicar
   };
 
+  
   useEffect(() => {
     const {refri, lavadora, aire, television, horno, estereo} = request;
 

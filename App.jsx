@@ -26,16 +26,16 @@ const toastConfig = {
   error: (props)=> (
       <BaseToast
       {...props}
-      style={{ borderLeftColor: 'red' , backgroundColor: 'black', borderRadius: 15 }}
-      contentContainerStyle={{ paddingHorizontal: 15, backgroundColor: 'black', borderRadius: 15 }}
+      style={{ borderLeftColor: 'red' , backgroundColor: 'black', borderRadius: 15,  height:80 }}
+      contentContainerStyle={{ paddingHorizontal: 15, backgroundColor: 'black', borderRadius: 15, }}
       text1Style={{
         fontSize: 15,
         fontWeight: '600', 
         color: 'white'
       }}
 
-      text2Style={{ fontSize: 16,   fontWeight: '500', color: 'white' }}
-
+      text2Style={{ fontSize: 10,   fontWeight: '500', color: 'white' }}
+      text2NumberOfLines={2}
     />
   )
 }

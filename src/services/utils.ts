@@ -1,6 +1,10 @@
 import { Customer } from "../models/User";
 
+{/* prueba  s mzfinan.dyndns.org:448 */}
+
 export const Base   = 'https://mzfinan.dyndns.org:448'  
+
+
 export const TIMEOUT = 80000;
 
 export type SolicitudRequest = {
@@ -44,10 +48,35 @@ export type SurveyRequest = {
     id: number,
     usuario: string,
     calif: number,
-    cal_ap: number
+    cal_ap: number,
+
+
 }
 
 export type SurveyResponse = {
     message: string,
     succes: boolean 
+}
+
+export type SurveyRequest2 = {
+    television: number,
+    horno: number,
+    refri: number,
+    aire:  number,
+    estereo: number,
+    lavadora: number,
+    casa: number,
+    depen: number,
+    per_viv: number,
+    id: number,
+    usuario: string,
+    calif: number,
+    cal_ap: number,
+    
+    ingreso_mensual: number,
+    comp_ingreso_adic: number,
+    ing_mensual_adic: number,
+    antiguedad_ine: number,
+    calf_referencias: number,
+    comp_ingreso: number 
 }

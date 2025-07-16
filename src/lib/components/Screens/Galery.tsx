@@ -19,9 +19,8 @@ import {
   useGetImageTypesQuery,
   useImageCreditByUserIdQuery,
 } from '../../../services/image';
-
 import ImageViewer from 'react-native-image-zoom-viewer';
-import { hp } from '../../../index';
+ 
 
 const {width} = Dimensions.get('window');
 const SMALL_WIDTH = width * 0.37;
@@ -48,6 +47,7 @@ export const Galery = ({customer}: {customer: Customer}) => {
 
   const credits = data?.data || [];
 
+  
   const imageLinks = types!.map(item => {
     const matched = credits.find(c => c.id_imagen === item.id);
     const uri = matched
@@ -56,6 +56,7 @@ export const Galery = ({customer}: {customer: Customer}) => {
 
     return {url: uri};
   });
+
 
   return (
     <ScrollView

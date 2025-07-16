@@ -40,6 +40,7 @@ export function useHomeController() {
       const items = response.data.items;
       setList(items);
       setFilteredDataSource(items);
+      console.log( response.data.items )
     } else {
       console.warn('Respuesta vacía o sin items:', response);
       setList([]);
